@@ -5,15 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     
 </head>
 <body>
     <h1>Hangman game</h1>
+    <p>press any key to get started</p>
+    <p>wins:  &nbsp; <span id="wins"></span></p>
+    <p>answer: &nbsp; <span id="answer"></span></p>
+    <p>guessed letters: &nbsp; <span id="guessedLetters"></span></p>
+    <p>remaining guesses: &nbsp; <span id="remainingGuesses"></span></p>
 
 
-    <script src="/assets/javascript/game.js">
+    <script src="assets/javascript/game.js">
     
-    
+    // function letters
+    // // replaces secretWords letters with "_"
+    // for (var i = 0; i < secretWords[randomSecretWord].length; i++) {
+    //     console.log(randomSecretWord);
+    //     secretWordAnswer[i] = "_";
+    //     console.log(secretWordAnswer);
+    // }
+    // // removes the commas and joins the letters into 1 string
+    // secretWordString = secretWordAnswer.join(" ");
+    // document.getElementById("answer").innerHTML = secretWordString;    
+
+// function to varify our users guesses with the letters in the word
+// function guess(letters) {
+//     for (var i = 0; i < secretWordAnswer; i++) {
+//         if (randomSecretWord[i] === letters) {
+//             secretWordAnswer[i] = letters;
+//         }
+//         else {
+//             remainingGuesses --;
+//             guessedLettersArray.push(letters);
+//         }
+//     }
+//     document.getElementById("answer").innerHTML = secretWordAnswer.join(" ");
+//     document.getElementById("remaingingGuesses").innerHTML = guessedLettersArray;
+// 
     
     
     </script>
