@@ -1,54 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
-    
+
 </head>
+
 <body>
-    <h1>Hangman: Superhero</h1>
-    <div>
-        <p id="header-text">press any key to get started</p>
-        <p>answer: &nbsp; <span id="answer"></span></p>
-        <p>guessed letters: &nbsp; <span id="guessedLetters"></span></p>
-        <p>remaining guesses: &nbsp; <span id="remainingGuesses"></span></p>
-        <p>wins:  &nbsp; <span id="wins"></span></p>
+    <div id="imgbackground">
+        <img src="assets/images/Hangman_8.jpg" class="img-fluid" id="update" alt="Responsive image">
+
+        <h1 class="content" id="title">superhero</h1>
+        <div class="content1">
+            <p id="header-text">press any key to get started</p>
+        </div>
+        <div id="word">
+            <p>answer: &nbsp; <span id="answer"></span></p>
+        </div>
+        <div class="content2">
+            <div>
+                <p>guessed letters: &nbsp; <span id="guessedLetters"></span></p>
+            </div>
+            <div>
+                <p>remaining guesses: &nbsp; <span id="remainingGuesses"></span></p>
+            </div>
+            <div>
+                <p>wins: &nbsp; <span id="wins"></span></p>
+            </div>
+        </div>
     </div>
 
 
-    <script src="assets/javascript/game.js">
+    <script src="assets/javascript/game.js"></script>
     
-    // function letters
-    // // replaces secretWords letters with "_"
-    // for (var i = 0; i < secretWords[randomSecretWord].length; i++) {
-    //     console.log(randomSecretWord);
-    //     secretWordAnswer[i] = "_";
-    //     console.log(secretWordAnswer);
-    // }
-    // // removes the commas and joins the letters into 1 string
-    // secretWordString = secretWordAnswer.join(" ");
-    // document.getElementById("answer").innerHTML = secretWordString;    
-
-// function to varify our users guesses with the letters in the word
-// function guess(letters) {
-//     for (var i = 0; i < secretWordAnswer; i++) {
-//         if (randomSecretWord[i] === letters) {
-//             secretWordAnswer[i] = letters;
-//         }
-//         else {
-//             remainingGuesses --;
-//             guessedLettersArray.push(letters);
-//         }
-//     }
-//     document.getElementById("answer").innerHTML = secretWordAnswer.join(" ");
-//     document.getElementById("remaingingGuesses").innerHTML = guessedLettersArray;
-// 
-    
-    
-    </script>
 </body>
+
 </html>

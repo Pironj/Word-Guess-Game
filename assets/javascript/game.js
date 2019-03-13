@@ -58,19 +58,38 @@ var hangman = {
             hangman.guessedLettersArray.push(userGuess);
             hangman.remainingGuesses--;
         }
+        //update hangman images when guesses --.
+        // if (hangman.remainingGuesses === 5) {
+        //     document.getElementById("#update").src = "assets/images/Hangman-img1.jpg";
+        // }
+        // if (hangman.remainingGuesses === 4) {
+        //     document.getElementById("#update").src = "../images/Hangman-img2.jpg";
+        // }
+        // if (hangman.remainingGuesses === 3) {
+        //     document.getElementById("#update").src = "../images/Hangman-img3.jpg";
+        // }
+        // if (hangman.remainingGuesses === 2) {
+        //     document.getElementById("img-fluid").src = "../images/Hangman-img4.jpg";
+        // }
+        // if (hangman.remainingGuesses === 1) {
+        //     document.getElementById("img-fluid").src = "../images/Hangman-img5.jpg";
+        // }
+        // if (hangman.remainingGuesses === 0) {
+        //     document.getElementById("img-fluid").src = "../images/Hangman-img6.jpg";
+        // }
 
-
-
+        //update game stats
         document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
         document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray.join(" ");
         document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
-        
+        //adds count to wins count and wins reset game
         if (hangman.secretWordAnswer.join("") === hangman.underscoreArray.join("") && hangman.remainingGuesses > 0) {
             document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
             hangman.wins++;
             hangman.reset();
 
         }
+        // loses reset game
         if (hangman.remainingGuesses === 0) {
             hangman.reset();
         }
@@ -91,7 +110,7 @@ var hangman = {
             hangman.guessedLettersArray = [];
         }
         hangman.gameStart = false;
-
+        //update reset stats
         document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
         document.getElementById("wins").innerHTML = hangman.wins;
         document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray;
