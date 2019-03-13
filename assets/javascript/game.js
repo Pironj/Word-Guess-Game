@@ -8,9 +8,8 @@ var hangman = {
     guessedLettersArray: [],
     secretWordAnswer: [],
     underscoreArray: [],
-    remainingGuesses: 10,
+    remainingGuesses: 6,
     gameStart: false,
-
 
 
 
@@ -19,16 +18,6 @@ var hangman = {
         // debugger;
         hangman.gameStart = true;
         console.log(hangman.gameStart);
-
-
-        // hangman.guessedLettersArray = []; // array to store incorrect key entry from user.
-        // // console.log(hangman.guessedLettersArray)
-        // hangman.secretWordAnswer = []; // selected random word split into characters in array.
-        // // console.log(hangman.secretWordAnswer)
-        // hangman.underscoreArray = [];  // array to push "_" for each [i (letter)] in split selected word.
-        // // console.log(hangman.underscoreArray)
-        // hangman.remainingGuesses = 10;
-        // // console.log(hangman.remainingGuesses)
 
         // Function we call to pick a random word from our hangman object secretWords.
         var randomSecretWord = hangman.secretWords[Math.floor(Math.random() * hangman.secretWords.length)];
@@ -43,76 +32,71 @@ var hangman = {
             console.log(this.underscoreArray);
             // console.log("answer");
         }
-
+        // want to display these initial values in our DOM
+        document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
         document.getElementById("wins").innerHTML = hangman.wins;
-        // document.getElementById("answer").innerHTML = hangman.underscoreArray;
         document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray;
         document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
         // call function to start gameplay
-        hangman.gamePlay();
+        // hangman.gamePlay();
+    
 
     },
 
     gamePlay: function () {
         // debugger;
-        var success = false;
-        var finish = true;
-        var count = hangman.wins
-
-
-
-        // remove commas from underscare array.
-        // hangman.noCommaArray = hangman.underscoreArray.join(" ");
-        // console.log(hangman.noCommaArray);
-
-
-        // want to display these initial values in our DOM
-
+        var finish = false;
 
         // gameplay loop to determin if key event pressed by user is equal to a letter in secretWordAnswer.
         for (var i = 0; i < hangman.secretWordAnswer.length; i++) {
             if (hangman.secretWordAnswer[i] === userGuess ) {
                 hangman.underscoreArray[i] = userGuess;
-                success = true;
             }
         }
-        document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
-            if (hangman.secretWordAnswer.indexOf(userGuess) < 0) {
-                hangman.guessedLettersArray.push(userGuess);
-                document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray.join(" ");
-            }
-        // for (var i = 0; i < hangman.secretWordAnswer.length; i++) {
-        //     if (hangman.secretWordAnswer[i] != userGuess && userGuess != hangman.guessedLettersArray.indexOf()) {
-                
-
-        //         success = false;
-        //     }
-        // }
-        // if (hangman.guessedLettersArray != userGuess && hangman.secretWordAnswer[i] != userGuess) {
-        //     success = false;
-        //     hangman.guessedLettersArray.push(userGuess)
-        //     document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray.join(" ");
-        // }
-        hangman.remainingGuesses--;
-        
-        // for (var i = 0; i < hangman.secretWordAnswer.length; i++) {
-        //     if (hangman.secretWordAnswer[i] != userGuess) {
-        //     hangman.guessedLettersArray[i] != userGuess;
-        //     }
-        // }
-        if (success = false && hangman.remainingGuesses > 0) {
+        // if userGuess is not in the answer puts the letter in guessedLetterArray. does not allow same letter more than once.
+        if (hangman.secretWordAnswer.includes(userGuess) != true  && hangman.guessedLettersArray.includes(userGuess) != true) {
+            hangman.guessedLettersArray.push(userGuess);
             hangman.remainingGuesses--;
-            document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
         }
-        
-        if (success = true && hangman.underscoreArray === hangman.secretWordAnswer) {
-            alert("You Win");
-            count++;
-            document.getElementById("wins").innerHTML = count;
-        }
-        
-    }
 
+
+
+        document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
+        document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray.join(" ");
+        document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
+        
+        if (hangman.secretWordAnswer.join("") === hangman.underscoreArray.join("") && hangman.remainingGuesses > 0) {
+            document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
+            hangman.wins++;
+            hangman.reset();
+
+        }
+        if (hangman.remainingGuesses === 0) {
+            hangman.reset();
+        }
+    },
+    // Function called when win to reset game stats
+    reset: function () {
+        if (hangman.wins > 0) {
+            hangman.remainingGuesses = 10;
+            hangman.underscoreArray = [];
+            hangman.secretWordAnswer = [];
+            hangman.guessedLettersArray = [];
+        }
+        else {
+            hangman.wins = 0;
+            hangman.remainingGuesses = 10;
+            hangman.underscoreArray = [];
+            hangman.secretWordAnswer = [];
+            hangman.guessedLettersArray = [];
+        }
+        hangman.gameStart = false;
+
+        document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
+        document.getElementById("wins").innerHTML = hangman.wins;
+        document.getElementById("guessedLetters").innerHTML = hangman.guessedLettersArray;
+        document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
+    }
 
 
 
