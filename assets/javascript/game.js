@@ -1,7 +1,6 @@
 // make global variable to use in object
 var userGuess;
-// const imageDiv = document.getElementById("update")
-// console.log(imageDiv)
+// create an array of possible keys that can be pressed for our game.
 letter = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
 var img = document.createElement("img");
 img.src = "assets/images/lose.jpg";
@@ -22,10 +21,10 @@ var hangman = {
 
     // start game function to reset game values
     beginGame: function () {
-        // debugger;
-        
+        //Resets the game image to begin anew
+        document.getElementById("update").setAttribute("src","assets/images/Hangman_8.jpg");
+        //turns key value pair of gameStart to true which affects our .onkeyup function to run the gamePlay function
         hangman.gameStart = true;
-        console.log(hangman.gameStart);
 
         // Function we call to pick a random word from our hangman object secretWords.
         var randomSecretWord = hangman.secretWords[Math.floor(Math.random() * hangman.secretWords.length)];
@@ -36,9 +35,6 @@ var hangman = {
         // loop through each element (letter) in randomSecretWord to return "_" for each position [i].
         for (var i = 0; i < randomSecretWord.length; i++) {
             hangman.underscoreArray.push("_");
-
-            console.log(this.underscoreArray);
-            // console.log("answer");
         }
         // want to display these initial values in our DOM
         document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
@@ -52,9 +48,6 @@ var hangman = {
     },
 
     gamePlay: function () {
-        // debugger;
-        var finish = false;
-        
         
         // gameplay loop to determin if key event pressed by user is equal to a letter in secretWordAnswer.
         for (var i = 0; i < hangman.secretWordAnswer.length; i++) {
@@ -83,7 +76,7 @@ var hangman = {
         if (hangman.remainingGuesses === 1) {
             document.getElementById("update").setAttribute("src","assets/images/Hangman-img5.jpg");
         }
-        if (hangman.remainingGuesses < 0) {
+        if (hangman.remainingGuesses < 1) {
             document.getElementById("update").setAttribute("src","assets/images/Hangman-img6.jpg");
         }
 
@@ -97,7 +90,7 @@ var hangman = {
             hangman.wins++;
             hangman.reset();
         }
-        // loses reset game
+        // loses reset game when out of guesses ( = 0)
         if (hangman.remainingGuesses === 0) {
             hangman.reset();
         }
@@ -111,13 +104,14 @@ var hangman = {
             hangman.guessedLettersArray = [];
         }
         else {
-            document.getElementById("update").setAttribute("src","assets/images/Hangman-img6.jpg");
+            // document.getElementById("update").setAttribute("src","assets/images/Hangman-img6.jpg");
             hangman.wins = 0;
             hangman.remainingGuesses = 6;
             hangman.underscoreArray = [];
             hangman.secretWordAnswer = [];
             hangman.guessedLettersArray = [];
         }
+        //switches boolean to false to tell onkeyup function to run beginGame function instead.
         hangman.gameStart = false;
         //update reset stats
         document.getElementById("answer").innerHTML = hangman.underscoreArray.join(" ");
@@ -126,7 +120,7 @@ var hangman = {
         document.getElementById("remainingGuesses").innerHTML = hangman.remainingGuesses;
         
         if (hangman.gameStart === false) {
-            document.getElementById("update").setAttribute("src","assets/images/Hangman_8.jpg");
+            // document.getElementById("update").setAttribute("src","assets/images/Hangman_8.jpg");
         }
     }
      
@@ -139,6 +133,7 @@ var hangman = {
 // using press any key to start the game
 document.onkeyup = function (event) {
     userGuess = event.key;
+    // condition set to only allow functions to run if user presses key [a-z]
     if (letter.indexOf(userGuess) != -1) {
 
 
